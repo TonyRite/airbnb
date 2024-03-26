@@ -1,6 +1,8 @@
-import { View, Text } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, Text, FlatList, ListRenderItem, Image, TouchableOpacity } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import { defaultStyles } from '@/constants/Styles';
+import { Link } from 'expo-router';
+
 
 
 interface Props {
@@ -8,14 +10,33 @@ interface Props {
     category: string
 }
 
-const Listing = ({ listing, category }: Props) => {
+const Listing = ({ listing:items, category }: Props) => {
+const [loading ,setLoading] = useState(false);
+const listRef = useRef<FlatList>(null);
+
     useEffect(() => {
-        console.log("Reloading Listing:",listing.length)
+        console.log("Reloading Listing:",items.length);
+        setLoading(true);
+
+        setTimeout(()=>{
+            setLoading(false);
+        },200)
     }, [category])
+
+    const renderRow: ListRenderItem<any> =({item}) =>(
+        <Link href ={`/listing/${item.id}`}>
+            {/* Go there */}
+            <TouchableOpacity>
+                <View>
+                    <Image source={{uri:item.medium_url}}/>
+                </View>
+            </TouchableOpacity>
+            </Link>
+    )
 
     return (
         <View style={defaultStyles.container}>
-            <Text>Listing</Text>
+           <FlatList renderItem={renderRow} ref={listRef} data={loading?[]:items}/>
         </View>
     )
 }
