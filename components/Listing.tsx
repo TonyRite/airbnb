@@ -33,7 +33,7 @@ const listRef = useRef<FlatList>(null);
                 <Animated.View style={styles.listing}entering={FadeInRight} exiting={FadeOutLeft}>
                     <Image source={{uri:item.medium_url}} style={styles.image} />
                     <TouchableOpacity style={{position:'absolute',right:30,top:30}}>
-                        <Ionicons name='heart-outline' size={24} color={'000'}/>
+                        <Ionicons name='heart-outline' size={24} color={'#000'}/>
                     </TouchableOpacity>
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                         <Text style={{fontSize:12,fontFamily:'mon-sb'}}>{item.name}</Text>
