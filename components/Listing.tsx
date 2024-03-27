@@ -10,7 +10,7 @@ import Animated, { FadeInRight, FadeOutLeft } from 'react-native-reanimated';
 
 interface Props {
     listing: any[];
-    category: string
+    category: string;
 }
 
 const Listing = ({ listing:items, category }: Props) => {
@@ -31,6 +31,7 @@ const listRef = useRef<FlatList>(null);
             {/* Go there */}
             <TouchableOpacity>
                 <Animated.View style={styles.listing}entering={FadeInRight} exiting={FadeOutLeft}>
+                {/* <View style={styles.listing}> */}
                     <Image source={{uri:item.medium_url}} style={styles.image} />
                     <TouchableOpacity style={{position:'absolute',right:30,top:30}}>
                         <Ionicons name='heart-outline' size={24} color={'#000'}/>
@@ -49,6 +50,7 @@ const listRef = useRef<FlatList>(null);
                     <Text style={{fontFamily:'mon'}}>night</Text>
                     </View>
                 </Animated.View>
+                {/* </View> */}
             </TouchableOpacity>
             </Link>
     )
