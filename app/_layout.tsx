@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
+import ModalHeaderText from '@/components/ModalHeaderText';
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 // using secure store to store the key 
@@ -103,7 +104,9 @@ function RootLayoutNav() {
       <Stack.Screen name="(modals)/booking"
         options={{
           presentation: 'transparentModal',
-          animation: 'slide_from_right', //fade
+          animation: 'slide_from_right', 
+          headerTransparent:true,
+          headerTitle:()=><ModalHeaderText/>,//fade
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name='close-outline' size={28} />
